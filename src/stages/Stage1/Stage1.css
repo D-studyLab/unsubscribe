@@ -1,0 +1,178 @@
+/* Stage 1: BuyMore - Corporate Nightmare Theme with Orange Accent */
+
+.stage1 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+}
+
+.stage1-header {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  padding: var(--space-lg);
+  border-bottom: 3px solid var(--color-border-dark);
+}
+
+.stage1-header h1 {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: var(--text-3xl);
+  font-weight: var(--font-black);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-weight: var(--font-semibold);
+}
+
+.stage1-content {
+  flex: 1;
+  padding: var(--space-2xl) var(--space-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.products h2 {
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-primary);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.product-card {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-dark);
+  box-shadow: var(--shadow-brutal-sm);
+  padding: var(--space-lg);
+  text-align: center;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-border-dark);
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 8px;
+  height: 8px;
+  background: var(--color-stage1-accent);
+}
+
+.product-image {
+  font-size: 64px;
+  margin-bottom: var(--space-md);
+}
+
+.product-card h3 {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+}
+
+.product-price {
+  font-size: var(--text-xl);
+  font-weight: var(--font-black);
+  color: var(--color-stage1-accent);
+  margin: var(--space-sm) 0;
+}
+
+.product-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.hint-box {
+  background: var(--color-surface);
+  border-left: 4px solid var(--color-stage1-accent);
+  padding: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.hint-box p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.stage1-footer {
+  background: var(--color-text-primary);
+  color: var(--color-surface);
+  padding: var(--space-2xl) var(--space-lg) var(--space-lg);
+  margin-top: auto;
+  border-top: 3px solid var(--color-border-dark);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.footer-links a,
+.footer-links button {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-weight: var(--font-semibold);
+}
+
+.footer-links a:hover,
+.footer-links button:hover {
+  color: var(--color-surface);
+}
+
+/* Dark Pattern: Hidden unsubscribe link */
+.tiny-link {
+  font-size: var(--text-xs) !important;
+  opacity: 0.3;
+  letter-spacing: var(--tracking-normal) !important;
+  text-transform: none !important;
+  font-weight: var(--font-normal) !important;
+}
+
+.tiny-link:hover {
+  opacity: 0.6;
+  color: var(--color-danger) !important;
+}
+
+.copyright {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  letter-spacing: var(--tracking-wider);
+}

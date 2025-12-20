@@ -1,0 +1,68 @@
+/*
+ * Design Tokens - Corporate Nightmare Theme
+ * Based on docs/design.md
+ */
+
+:root {
+  /* ========== Base Colors ========== */
+  --color-background: #f5f5f0;      /* オフホワイト - 少し黄ばんだ紙のような色 */
+  --color-surface: #ffffff;          /* 純白 - カード・入力欄 */
+  --color-text-primary: #1a1a1a;     /* ほぼ黒 - メインテキスト */
+  --color-text-secondary: #666666;   /* グレー - サブテキスト */
+  --color-text-muted: #999999;       /* 薄いグレー - 注釈・プレースホルダー */
+
+  /* ========== Accent Colors ========== */
+  --color-danger: #c41e3a;           /* 深い赤 - 警告・重要な要素 */
+  --color-border: #e0e0e0;           /* ボーダー */
+  --color-border-dark: #1a1a1a;      /* 強調ボーダー */
+
+  /* ========== Stage-Specific Accents ========== */
+  --color-stage1-accent: #ff6600;    /* BuyMore - オレンジ */
+  --color-stage2-accent: #0066cc;    /* Info-Sphere - 青 */
+  --color-stage3-accent: #6b46c1;    /* Fan-Circle - 紫 */
+  --color-stage4-accent: #0099cc;    /* Sky-Cheap - 空色 */
+
+  /* ========== Shadows ========== */
+  --shadow-brutal: 8px 8px 0 var(--color-border-dark);  /* ブルータリスト的な影 */
+  --shadow-brutal-sm: 4px 4px 0 var(--color-border-dark);
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  /* ========== Typography ========== */
+  --font-heading: "IBM Plex Sans", "Noto Sans JP", -apple-system, sans-serif;
+  --font-body: "IBM Plex Sans", "Noto Sans JP", sans-serif;
+  --font-small: "IBM Plex Sans", sans-serif;
+
+  /* Font Sizes */
+  --text-xs: 10px;    /* 極小注釈 - 意図的に読みにくく */
+  --text-sm: 12px;    /* 小さな注釈 */
+  --text-base: 14px;  /* 本文 */
+  --text-lg: 16px;    /* 強調テキスト */
+  --text-xl: 20px;    /* 小見出し */
+  --text-2xl: 24px;   /* 見出し */
+  --text-3xl: 32px;   /* 大見出し */
+  --text-4xl: 48px;   /* タイトル */
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-black: 800;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.2em;
+
+  /* ========== Spacing ========== */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 80px;
+}

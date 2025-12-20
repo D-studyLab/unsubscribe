@@ -1,0 +1,115 @@
+/* Start Page - Corporate Nightmare Theme */
+
+.start-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background);
+  padding: var(--space-lg);
+}
+
+.start-content {
+  background: var(--color-surface);
+  border: 3px solid var(--color-border-dark);
+  box-shadow: var(--shadow-brutal);
+  padding: var(--space-2xl);
+  max-width: 600px;
+  width: 100%;
+}
+
+.title {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-black);
+  margin: 0 0 var(--space-md) 0;
+  text-align: center;
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0 0 var(--space-xl) 0;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  font-weight: var(--font-semibold);
+}
+
+.description {
+  margin-bottom: var(--space-xl);
+  line-height: 1.8;
+}
+
+.description p {
+  margin: var(--space-sm) 0;
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+}
+
+.nickname-section {
+  margin-top: var(--space-xl);
+}
+
+.nickname-section label {
+  display: block;
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+}
+
+.nickname-input-group {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.nickname-input-group input {
+  flex: 1;
+  padding: var(--space-md);
+  border: 2px solid var(--color-border-dark);
+  font-size: var(--text-lg);
+  font-family: var(--font-body);
+  background: var(--color-background);
+  transition: border-color 0.2s;
+}
+
+.nickname-input-group input:focus {
+  outline: none;
+  border-color: var(--color-text-primary);
+}
+
+.start-button {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-text-primary);
+  color: var(--color-surface);
+  border: 2px solid var(--color-border-dark);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  cursor: pointer;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.start-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-brutal-sm);
+}
+
+.start-button:active {
+  transform: translateY(0);
+}
+
+.hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  letter-spacing: var(--tracking-wider);
+}
