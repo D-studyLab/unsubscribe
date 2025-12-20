@@ -1,6 +1,6 @@
-// ステージ5: Everything（総合エンタメプラットフォーム）
+// ステージ5: Everything（総合エンタメプラットフォーム）- 規約スクロール地獄
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../../contexts';
 import { ROUTES } from '../../constants';
@@ -10,215 +10,133 @@ import './Stage5.css';
 const Stage5: React.FC = () => {
   const navigate = useNavigate();
   const { completeStage } = useGame();
-  const [showFAQ, setShowFAQ] = useState(false);
-  const [showPhone, setShowPhone] = useState(false);
-  const [phoneInput, setPhoneInput] = useState('');
-  const [isOnHold, setIsOnHold] = useState(false);
-  const [holdTime, setHoldTime] = useState(0);
-  const [successCode, setSuccessCode] = useState('');
+  const [scrolledToBottom, setScrolledToBottom] = useState(false);
+  const [fakeButtonClicked, setFakeButtonClicked] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const termsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (isOnHold) {
-      const timer = setInterval(() => {
-        setHoldTime(prev => prev + 1);
-      }, 1000);
-      return () => clearInterval(timer);
-    }
-  }, [isOnHold]);
-
-  const handleAccountClick = () => {
-    setShowFAQ(true);
-  };
-
-  const handleCallSupport = () => {
-    setShowPhone(true);
-    setShowFAQ(false);
-  };
-
-  const handlePhoneInput = (digit: string) => {
-    const newInput = phoneInput + digit;
-    setPhoneInput(newInput);
-
-    // 謎解き: 特定のタイミングで「4545」を入力
-    if (holdTime >= 10 && newInput === '4545') {
-      setSuccessCode('4545');
-      setTimeout(() => {
-        completeStage(5);
-        navigate(ROUTES.RESULT);
-      }, 1000);
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const element = e.currentTarget;
+    const isBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + 10;
+    if (isBottom) {
+      setScrolledToBottom(true);
     }
   };
 
-  const handleClearInput = () => {
-    setPhoneInput('');
+  const handleRealUnsubscribe = () => {
+    completeStage(5);
+    navigate(ROUTES.RESULT);
   };
 
-  const handleCallButton = () => {
-    if (!isOnHold) {
-      setIsOnHold(true);
-      setHoldTime(0);
-    }
+  const handleFakeButton = () => {
+    setFakeButtonClicked(true);
+    setProcessing(true);
+    // 3秒後にエラーメッセージ
+    setTimeout(() => {
+      setProcessing(false);
+    }, 3000);
   };
-
-  if (showPhone) {
-    return (
-      <div className="stage5 phone-page">
-        <div className="phone-container">
-          <h1>サポートセンター</h1>
-          <p className="support-number">📞 0120-XXX-XXXX</p>
-
-          <div className="phone-status">
-            {!isOnHold && (
-              <div className="initial-message">
-                <p>営業時間: 平日 10:00-10:05 (5分間のみ)</p>
-                <p className="warning-text">※現在、受付時間外です</p>
-                <button onClick={handleCallButton} className="call-button">
-                  それでも電話する
-                </button>
-              </div>
-            )}
-
-            {isOnHold && (
-              <div className="on-hold">
-                <div className="hold-animation">🎵</div>
-                <p className="hold-text">保留中... {holdTime}秒</p>
-                <p className="hold-message">しばらくお待ちください</p>
-
-                {holdTime >= 10 && (
-                  <div className="secret-hint">
-                    <p className="hint-text">💡 謎解きヒント: 退会したい気持ちを数字で表してみてください</p>
-                    <p className="small-hint">（よ・い・し・こ = 4・5・4・5）</p>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="phone-keypad">
-            <div className="phone-display">
-              <input
-                type="text"
-                value={phoneInput}
-                readOnly
-                className="phone-input-display"
-                placeholder="番号を入力"
-              />
-              {successCode === '4545' && (
-                <div className="success-message">✅ 退会コード受理！</div>
-              )}
-            </div>
-
-            <div className="keypad-grid">
-              {['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'].map((digit) => (
-                <button
-                  key={digit}
-                  onClick={() => handlePhoneInput(digit)}
-                  className="keypad-button"
-                  disabled={!isOnHold}
-                >
-                  {digit}
-                </button>
-              ))}
-            </div>
-
-            <button onClick={handleClearInput} className="clear-button">
-              クリア
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (showFAQ) {
-    return (
-      <div className="stage5 faq-page">
-        <div className="faq-container">
-          <h1>よくある質問（FAQ）</h1>
-
-          <div className="faq-list">
-            <div className="faq-item">
-              <h3>Q: サービスの使い方を教えてください</h3>
-              <p>A: トップページから各種コンテンツにアクセスできます...</p>
-            </div>
-
-            <div className="faq-item">
-              <h3>Q: パスワードを忘れました</h3>
-              <p>A: ログイン画面の「パスワードを忘れた方」から再設定できます...</p>
-            </div>
-
-            <div className="faq-item">
-              <h3>Q: プランを変更したい</h3>
-              <p>A: アカウント設定からプランを変更できます...</p>
-            </div>
-
-            <div className="faq-item">
-              <h3>Q: 退会したい</h3>
-              <p>A: 退会はサポートセンターへの電話でのみ受け付けております。</p>
-              <button onClick={handleCallSupport} className="call-support-button">
-                サポートセンターに電話する
-              </button>
-            </div>
-
-            <div className="faq-item">
-              <h3>Q: 支払い方法を変更したい</h3>
-              <p>A: アカウント設定から支払い方法を変更できます...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="stage5">
-      <header className="stage5-header">
-        <h1>Everything</h1>
-        <p className="tagline">あらゆるエンターテイメントをひとつに</p>
-        <button onClick={handleAccountClick} className="account-button">
-          アカウント
-        </button>
-      </header>
+      <div className="terms-container">
+        <h1>退会に関する重要事項</h1>
+        <p className="subtitle">最後までお読みいただき、同意の上で退会手続きを進めてください</p>
 
-      <main className="stage5-content">
-        <div className="services-section">
-          <h2>利用可能なサービス</h2>
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="service-icon">🎬</div>
-              <h3>動画配信</h3>
-              <p>映画・ドラマ見放題</p>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">🎵</div>
-              <h3>音楽ストリーミング</h3>
-              <p>1億曲以上聴き放題</p>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">📚</div>
-              <h3>電子書籍</h3>
-              <p>小説・漫画読み放題</p>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">🎮</div>
-              <h3>ゲーム</h3>
-              <p>100タイトル以上遊び放題</p>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">📰</div>
-              <h3>ニュース</h3>
-              <p>最新ニュース読み放題</p>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">☁️</div>
-              <h3>クラウドストレージ</h3>
-              <p>1TB まで保存可能</p>
-            </div>
+        <div className="terms-scroll" onScroll={handleScroll} ref={termsRef}>
+          <div className="terms-content">
+            <h2>第1条 総則</h2>
+            <p>
+              本規約は、株式会社Everything（以下「当社」といいます）が提供する総合エンターテイメントサービス「Everything」（以下「本サービス」といいます）の利用に関する条件を定めるものです。
+            </p>
+
+            <h2>第2条 アカウント登録</h2>
+            <p>
+              本サービスを利用するには、アカウント登録が必要です。登録時には、正確かつ最新の情報を提供する必要があります。虚偽の情報を登録した場合、当社はアカウントを停止または削除することができます。
+            </p>
+
+            <h2>第3条 サービス内容</h2>
+            <p>
+              本サービスでは、動画配信、音楽ストリーミング、電子書籍、ゲーム、ニュース、クラウドストレージなど、多様なエンターテイメントコンテンツを提供します。各サービスの詳細は、個別の利用規約をご確認ください。
+            </p>
+
+            <h2>第4条 利用料金</h2>
+            <p>
+              本サービスの利用料金は、選択されたプランによって異なります。月額プラン、年額プラン、個別課金など、複数の料金体系があります。料金は事前の通知なく変更される場合があります。
+            </p>
+
+            <h2>第5条 個人情報の取り扱い</h2>
+            <p>
+              当社は、利用者の個人情報を適切に管理し、プライバシーポリシーに従って取り扱います。個人情報は、サービス提供、マーケティング、データ分析などの目的で使用されます。第三者への提供については、プライバシーポリシーをご確認ください。
+            </p>
+
+            <h2>第6条 禁止事項</h2>
+            <p>
+              利用者は、本サービスの利用にあたり、以下の行為を行ってはなりません。
+            </p>
+            <ul>
+              <li>法令または公序良俗に違反する行為</li>
+              <li>犯罪行為に関連する行為</li>
+              <li>他の利用者または第三者の権利を侵害する行為</li>
+              <li>本サービスの運営を妨害する行為</li>
+              <li>不正アクセスまたはハッキング行為</li>
+            </ul>
+
+            <h2>第7条 アカウントの解約</h2>
+            <p>
+              利用者は、本サービスから
+              <span className="hidden-unsubscribe" onClick={handleRealUnsubscribe}>退会</span>
+              することができます。解約手続きは、所定の方法に従って行う必要があります。解約後も、一定期間はデータが保持される場合があります。また、解約前に発生した利用料金については、返金されません。
+            </p>
+
+            <h2>第8条 サービスの変更・停止</h2>
+            <p>
+              当社は、利用者への事前通知なく、本サービスの内容を変更、追加、または停止することができます。サービスの変更や停止によって利用者に損害が生じた場合でも、当社は一切の責任を負いません。
+            </p>
+
+            <h2>第9条 免責事項</h2>
+            <p>
+              当社は、本サービスの利用によって生じたいかなる損害についても、当社に故意または重大な過失がある場合を除き、一切の責任を負いません。また、本サービスの中断、エラー、ウイルス感染などについても、責任を負いません。
+            </p>
+
+            <h2>第10条 準拠法と管轄裁判所</h2>
+            <p>
+              本規約の解釈および適用については、日本法に準拠します。本サービスに関する紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。
+            </p>
+
+            <h2>第11条 規約の変更</h2>
+            <p>
+              当社は、利用者への事前通知なく、本規約を変更することができます。変更後の規約は、本サービス上で公開された時点で効力を生じます。利用者が変更後も本サービスを継続して利用する場合、変更後の規約に同意したものとみなします。
+            </p>
+
+            <h2>第12条 問い合わせ</h2>
+            <p>
+              本サービスまたは本規約に関するお問い合わせは、サポートセンター（support@everything.example.com）までご連絡ください。ただし、回答までに時間がかかる場合があります。また、すべてのお問い合わせに回答できるとは限りません。
+            </p>
+
+            <p className="final-notice">以上、ご確認ありがとうございました。</p>
           </div>
         </div>
 
-        <HintToggle hintText="💡 ヒント: アカウント設定を確認してみましょう" />
-      </main>
+        {scrolledToBottom && (
+          <div className="button-container">
+            <button
+              className="fake-unsubscribe-button"
+              onClick={handleFakeButton}
+              disabled={processing}
+            >
+              {processing ? '処理中...' : '同意して退会'}
+            </button>
+            {fakeButtonClicked && !processing && (
+              <p className="error-message">
+                ❌ エラーが発生しました。時間をおいて再度お試しください。
+              </p>
+            )}
+          </div>
+        )}
+
+        <HintToggle hintText="💡 ヒント: 本当に最後まで読む必要があるのでしょうか？規約文をよく見てみましょう。" />
+      </div>
     </div>
   );
 };

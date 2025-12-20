@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "un-subscribe",
     "public": "build",
     "ignore": [
       "firebase.json",

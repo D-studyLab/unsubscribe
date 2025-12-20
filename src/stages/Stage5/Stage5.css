@@ -1,378 +1,140 @@
+/* Stage 5: Everything - 規約スクロール地獄 - Corporate Nightmare Theme */
+
 .stage5 {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  background: #1a1a2e;
-  color: white;
-}
-
-.stage5-header {
-  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
-  padding: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.stage5-header h1 {
-  margin: 0 0 8px 0;
-  font-size: 36px;
-  font-weight: bold;
-}
-
-.tagline {
-  margin: 0;
-  font-size: 16px;
-  opacity: 0.8;
-}
-
-.account-button {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.account-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.stage5-content {
-  flex: 1;
-  padding: 40px 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.services-section h2 {
-  margin-bottom: 32px;
-  font-size: 28px;
-  text-align: center;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 24px;
-  margin-bottom: 48px;
-}
-
-.service-card {
-  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
-  border-radius: 16px;
-  padding: 32px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.service-icon {
-  font-size: 64px;
-  margin-bottom: 16px;
-}
-
-.service-card h3 {
-  margin: 0 0 8px 0;
-  font-size: 20px;
-}
-
-.service-card p {
-  margin: 0;
-  opacity: 0.7;
-  font-size: 14px;
-}
-
-.hint-box {
-  background: rgba(255, 193, 7, 0.1);
-  border: 1px solid rgba(255, 193, 7, 0.3);
-  border-radius: 8px;
-  padding: 16px;
-  margin-top: 40px;
-}
-
-.hint-box p {
-  margin: 0;
-  color: #ffc107;
-}
-
-/* FAQページ */
-.faq-page {
-  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
-  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  background: var(--color-background);
+  padding: var(--space-2xl) var(--space-lg);
 }
 
-.faq-container {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 48px;
+.terms-container {
+  background: var(--color-surface);
+  border: 3px solid var(--color-border-dark);
+  box-shadow: var(--shadow-brutal);
+  padding: var(--space-2xl);
   max-width: 800px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
 }
 
-.faq-container h1 {
-  font-size: 32px;
+.terms-container h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-black);
+  margin: 0 0 var(--space-md) 0;
   text-align: center;
-  margin: 0 0 40px 0;
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
 }
 
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.subtitle {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  margin: 0 0 var(--space-xl) 0;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  font-weight: var(--font-semibold);
 }
 
-.faq-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 24px;
-  border-left: 4px solid #e53935;
+.terms-scroll {
+  height: 400px;
+  overflow-y: scroll;
+  border: 2px solid var(--color-border-dark);
+  background: var(--color-background);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 
-.faq-item h3 {
-  margin: 0 0 12px 0;
-  font-size: 18px;
-  color: #ffc107;
+.terms-content {
+  color: var(--color-text-primary);
+  line-height: 1.8;
 }
 
-.faq-item p {
-  margin: 0 0 16px 0;
-  opacity: 0.9;
-  line-height: 1.6;
+.terms-content h2 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  margin: var(--space-xl) 0 var(--space-sm) 0;
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
-.call-support-button {
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+.terms-content h2:first-child {
+  margin-top: 0;
+}
+
+.terms-content p {
+  margin: var(--space-sm) 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.terms-content ul {
+  margin: var(--space-sm) 0;
+  padding-left: var(--space-xl);
+}
+
+.terms-content li {
+  margin: var(--space-xs) 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.hidden-unsubscribe {
+  color: var(--color-text-primary);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: underline;
+  transition: color 0.2s;
+  font-weight: var(--font-bold);
 }
 
-.call-support-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4);
+.hidden-unsubscribe:hover {
+  color: var(--color-danger);
+  text-decoration: none;
 }
 
-/* 電話ページ */
-.phone-page {
-  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-}
-
-.phone-container {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  padding: 48px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-}
-
-.phone-container h1 {
-  font-size: 28px;
+.final-notice {
+  margin-top: var(--space-2xl);
   text-align: center;
-  margin: 0 0 16px 0;
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
 }
 
-.support-number {
+.button-container {
   text-align: center;
-  font-size: 20px;
-  color: #ffc107;
-  margin: 0 0 32px 0;
+  margin-top: var(--space-lg);
 }
 
-.phone-status {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 32px;
-  margin-bottom: 32px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.initial-message {
-  text-align: center;
-}
-
-.initial-message p {
-  margin: 8px 0;
-}
-
-.warning-text {
-  color: #e53935;
-  font-weight: bold;
-  font-size: 18px;
-  margin: 16px 0 24px 0 !important;
-}
-
-.call-button {
-  padding: 16px 32px;
-  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+.fake-unsubscribe-button {
+  padding: var(--space-lg) var(--space-2xl);
+  background: var(--color-text-primary);
+  color: var(--color-surface);
+  border: 3px solid var(--color-border-dark);
+  box-shadow: var(--shadow-brutal-sm);
+  font-size: var(--text-lg);
+  font-weight: var(--font-black);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: transform 0.2s ease, opacity 0.2s;
 }
 
-.call-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+.fake-unsubscribe-button:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-border-dark);
 }
 
-.on-hold {
-  text-align: center;
-  width: 100%;
-}
-
-.hold-animation {
-  font-size: 48px;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.1); }
-}
-
-.hold-text {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 16px 0 8px 0;
-  color: #ffc107;
-}
-
-.hold-message {
-  opacity: 0.7;
-  margin: 0;
-}
-
-.secret-hint {
-  margin-top: 24px;
-  background: rgba(76, 175, 80, 0.1);
-  border: 2px solid #4caf50;
-  border-radius: 8px;
-  padding: 16px;
-}
-
-.hint-text {
-  margin: 0 0 8px 0;
-  color: #4caf50;
-  font-size: 14px;
-}
-
-.small-hint {
-  margin: 0;
-  font-size: 12px;
-  color: #81c784;
-}
-
-.phone-keypad {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.phone-display {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  padding: 16px;
-}
-
-.phone-input-display {
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  outline: none;
-}
-
-.success-message {
-  margin-top: 12px;
-  color: #4caf50;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.keypad-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.keypad-button {
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.keypad-button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.keypad-button:disabled {
-  opacity: 0.3;
+.fake-unsubscribe-button:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.clear-button {
-  padding: 12px;
-  background: rgba(229, 57, 53, 0.2);
-  color: white;
-  border: 2px solid rgba(229, 57, 53, 0.4);
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.clear-button:hover {
-  background: rgba(229, 57, 53, 0.3);
+.error-message {
+  margin-top: var(--space-md);
+  color: var(--color-danger);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-wider);
 }
