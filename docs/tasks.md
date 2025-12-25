@@ -300,6 +300,35 @@
   - `src/stages/Stage5/Stage5.css` (完全書き換え)
   - `docs/stage-redesign.md` (新規作成、参考用)
 
+### 2025-12-25 (4) - 結果画面メッセージの変更
+- ResultPageのエンディングメッセージを哲学的な内容に変更
+- 旧メッセージ: ダークパターンについての説明的な文章
+- 新メッセージ: 自由意志と選択についての問いかけ
+  - 「しかし、あなたは本当に自由になったのでしょうか...？」
+  - 「「退会する」を選んだあなたは自由ですか？それとも、選択させられただけですか？」
+  - 「自由意志とは、用意された選択肢の中から選ぶことではありません。」
+- 対応ファイル:
+  - `src/pages/ResultPage.tsx` (result-messageセクションのみ変更)
+
+### 2025-12-25 (5) - デプロイとファビコン設定
+- Firebase Hostingへのデプロイ完了
+- デプロイURL設定:
+  - `firebase.json`に`"site": "un-subscribe"`を追加
+  - デプロイ先: https://un-subscribe.web.app
+- ファビコン更新:
+  - 檻から手が脱出するデザインのファビコンに変更
+  - `ファビコン.jpg`をfavicon.ico、logo192.png、logo512.pngに変換
+  - タイトル: "The Unsubscribe"
+  - 説明文: "退会できるか？ダークパターンの迷宮を抜け出せ。"
+  - テーマカラー: #000000
+- 対応ファイル:
+  - `firebase.json` (site設定追加)
+  - `public/favicon.ico` (更新)
+  - `public/logo192.png` (更新)
+  - `public/logo512.png` (更新)
+  - `public/index.html` (タイトル、メタ説明更新)
+  - `public/manifest.json` (アプリ名、テーマカラー更新)
+
 ---
 
-**最終更新**: 2025-12-20
+**最終更新**: 2025-12-25
