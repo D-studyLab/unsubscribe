@@ -7,7 +7,6 @@ import { generateRandomName } from '../utils';
 import { audioManager } from '../utils/audio';
 import { ROUTES } from '../constants';
 import { PageTransition } from '../components/PageTransition';
-import { AudioControl } from '../components/AudioControl';
 import { SettingsButton } from '../components/SettingsButton';
 import './StartPage.css';
 
@@ -78,7 +77,6 @@ const StartPage: React.FC = () => {
           </div>
         </div>
         <SettingsButton />
-        <AudioControl />
       </div>
     </PageTransition>
   );

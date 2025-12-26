@@ -7,7 +7,6 @@ import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { HintToggle } from '../../components/HintToggle';
 import { PageTransition } from '../../components/PageTransition';
-import { AudioControl } from '../../components/AudioControl';
 import { SettingsButton } from '../../components/SettingsButton';
 import './Stage5.css';
 
@@ -145,7 +144,6 @@ const Stage5: React.FC = () => {
         <HintToggle hintText="💡 ヒント: 本当に最後まで読む必要があるのでしょうか？規約文をよく見てみましょう。" />
       </div>
       <SettingsButton />
-      <AudioControl />
     </div>
     </PageTransition>
   );

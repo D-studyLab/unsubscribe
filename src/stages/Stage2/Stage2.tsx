@@ -8,7 +8,6 @@ import { ROUTES } from '../../constants';
 import { DummyPageModal } from '../../components/DummyPageModal';
 import { HintToggle } from '../../components/HintToggle';
 import { PageTransition } from '../../components/PageTransition';
-import { AudioControl } from '../../components/AudioControl';
 import { SettingsButton } from '../../components/SettingsButton';
 import './Stage2.css';
 
@@ -70,7 +69,7 @@ const Stage2: React.FC = () => {
             </small>
           </div>
         </div>
-        <AudioControl />
+        <SettingsButton />
       </div>
       </PageTransition>
     );
@@ -138,7 +137,6 @@ const Stage2: React.FC = () => {
         content={dummyPage?.content || ''}
       />
       <SettingsButton />
-      <AudioControl />
     </div>
     </PageTransition>
   );

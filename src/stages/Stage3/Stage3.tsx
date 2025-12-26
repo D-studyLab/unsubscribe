@@ -5,10 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useGame } from '../../contexts';
 import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
-import { DummyPageModal } from '../../components/DummyPageModal';
 import { HintToggle } from '../../components/HintToggle';
 import { PageTransition } from '../../components/PageTransition';
-import { AudioControl } from '../../components/AudioControl';
 import { SettingsButton } from '../../components/SettingsButton';
 import './Stage3.css';
 
@@ -71,7 +69,7 @@ const Stage3: React.FC = () => {
             それでも退会する
           </button>
         </div>
-        <AudioControl />
+        <SettingsButton />
       </div>
       </PageTransition>
     );
@@ -131,7 +129,7 @@ const Stage3: React.FC = () => {
             </button>
           </div>
         </div>
-        <AudioControl />
+        <SettingsButton />
       </div>
       </PageTransition>
     );
@@ -204,7 +202,6 @@ const Stage3: React.FC = () => {
         <HintToggle hintText="💡 ヒント: 設定から退会手続きができます" />
       </main>
       <SettingsButton />
-      <AudioControl />
     </div>
     </PageTransition>
   );

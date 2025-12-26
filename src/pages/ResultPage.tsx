@@ -7,7 +7,6 @@ import { formatDetailedTime, shareToTwitter } from '../utils';
 import { audioManager } from '../utils/audio';
 import { ROUTES } from '../constants';
 import { PageTransition } from '../components/PageTransition';
-import { AudioControl } from '../components/AudioControl';
 import { SettingsButton } from '../components/SettingsButton';
 import './ResultPage.css';
 
@@ -80,7 +79,6 @@ const ResultPage: React.FC = () => {
           </div>
         </div>
         <SettingsButton />
-        <AudioControl />
       </div>
     </PageTransition>
   );

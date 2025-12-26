@@ -16,7 +16,7 @@ export const SettingsButton: React.FC = () => {
   return (
     <>
       <button className="settings-button" onClick={handleOpen} title="設定">
-        ⚙️
+        ⚙
       </button>
       <SettingsModal isOpen={isOpen} onClose={handleClose} />
     </>
