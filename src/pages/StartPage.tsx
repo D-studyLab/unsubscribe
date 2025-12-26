@@ -18,12 +18,28 @@ const StartPage: React.FC = () => {
   useEffect(() => {
     // ページ読み込み時にランダムな名前を生成
     setInputNickname(generateRandomName());
+
+    // タイトル画面でBGMを開始
+    const startBGM = () => {
+      audioManager.resume();
+      audioManager.startBGM();
+      // イベントリスナーを削除
+      document.removeEventListener('click', startBGM);
+      document.removeEventListener('keydown', startBGM);
+    };
+
+    // ユーザーインタラクション後にBGM開始
+    document.addEventListener('click', startBGM);
+    document.addEventListener('keydown', startBGM);
+
+    return () => {
+      document.removeEventListener('click', startBGM);
+      document.removeEventListener('keydown', startBGM);
+    };
   }, []);
 
   const handleStart = () => {
-    audioManager.resume(); // AudioContextを有効化
     audioManager.playClick();
-    audioManager.startBGM();
     setNickname(inputNickname);
     startGame();
     navigate(ROUTES.STAGE_1);

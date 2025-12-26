@@ -18,12 +18,12 @@ class AudioManager {
 
       // BGM用のゲインノード
       this.bgmGainNode = this.audioContext.createGain();
-      this.bgmGainNode.gain.value = 0.3; // BGMの音量を上げる
+      this.bgmGainNode.gain.value = 0.15; // BGMの音量
       this.bgmGainNode.connect(this.audioContext.destination);
 
       // 効果音用のゲインノード
       this.sfxGainNode = this.audioContext.createGain();
-      this.sfxGainNode.gain.value = 0.5; // 効果音の音量を上げる
+      this.sfxGainNode.gain.value = 0.3; // 効果音の音量
       this.sfxGainNode.connect(this.audioContext.destination);
     } catch (error) {
       console.warn('Web Audio API not supported:', error);
@@ -98,7 +98,7 @@ class AudioManager {
 
     this.bgmAudio = new Audio('/bgm.mp3');
     this.bgmAudio.loop = true;
-    this.bgmAudio.volume = 0.3;
+    this.bgmAudio.volume = 0.15;
     this.bgmAudio.play().catch(error => {
       console.warn('BGM再生失敗:', error);
     });
