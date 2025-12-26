@@ -3,9 +3,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../../contexts';
+import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { DummyPageModal } from '../../components/DummyPageModal';
 import { HintToggle } from '../../components/HintToggle';
+import { PageTransition } from '../../components/PageTransition';
+import { AudioControl } from '../../components/AudioControl';
 import './Stage1.css';
 
 const Stage1: React.FC = () => {
@@ -14,17 +17,20 @@ const Stage1: React.FC = () => {
   const [dummyPage, setDummyPage] = useState<{ title: string; content: string } | null>(null);
 
   const handleUnsubscribe = () => {
+    audioManager.playSuccess();
     completeStage(1);
     nextStage();
     navigate(ROUTES.STAGE_2);
   };
 
   const showDummyPage = (title: string, content: string) => {
+    audioManager.playClick();
     setDummyPage({ title, content });
   };
 
   return (
-    <div className="stage1">
+    <PageTransition>
+      <div className="stage1">
       <header className="stage1-header">
         <h1>BuyMore - オンラインショッピング</h1>
         <p className="tagline">初回送料無料！今すぐお買い物</p>
@@ -84,7 +90,9 @@ const Stage1: React.FC = () => {
         title={dummyPage?.title || ''}
         content={dummyPage?.content || ''}
       />
+      <AudioControl />
     </div>
+    </PageTransition>
   );
 };
 

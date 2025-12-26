@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../../contexts';
+import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { HintToggle } from '../../components/HintToggle';
+import { PageTransition } from '../../components/PageTransition';
+import { AudioControl } from '../../components/AudioControl';
 import './Stage4.css';
 
 const Stage4: React.FC = () => {
@@ -15,10 +18,12 @@ const Stage4: React.FC = () => {
   const [clickCount, setClickCount] = useState(0);
 
   const handleMyAccountClick = () => {
+    audioManager.playClick();
     setShowUnsubscribePage(true);
   };
 
   const handleFakeUnsubscribe = () => {
+    audioManager.playError();
     // 偽の退会ボタン（トップページに戻る無限ループ）
     setClickCount(prev => prev + 1);
     if (clickCount >= 2) {
@@ -35,9 +40,11 @@ const Stage4: React.FC = () => {
 
   const handleRealUnsubscribe = () => {
     if (premiumSupportChecked) {
+      audioManager.playError();
       alert('プレミアム退会サポート（有料）が選択されています。チェックを外してください。');
       return;
     }
+    audioManager.playSuccess();
     completeStage(4);
     nextStage();
     navigate(ROUTES.STAGE_5);
@@ -45,7 +52,8 @@ const Stage4: React.FC = () => {
 
   if (showUnsubscribePage) {
     return (
-      <div className="stage4 unsubscribe-page">
+      <PageTransition>
+        <div className="stage4 unsubscribe-page">
         <div className="unsubscribe-form-container">
           <h1>アカウント退会</h1>
           <p className="subtitle">退会手続きを進めます</p>
@@ -97,12 +105,15 @@ const Stage4: React.FC = () => {
             💡 このボタンを押しても、なぜかトップページに戻ってしまいます...
           </p>
         </div>
+        <AudioControl />
       </div>
+      </PageTransition>
     );
   }
 
   return (
-    <div className="stage4">
+    <PageTransition>
+      <div className="stage4">
       <header className="stage4-header">
         <div className="header-content">
           <h1>Sky-Cheap</h1>
@@ -168,7 +179,9 @@ const Stage4: React.FC = () => {
 
         <HintToggle hintText="💡 ヒント: マイアカウントから退会手続きができます" />
       </main>
+      <AudioControl />
     </div>
+    </PageTransition>
   );
 };
 

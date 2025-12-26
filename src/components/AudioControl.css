@@ -1,0 +1,29 @@
+/* Audio Control - Corporate Nightmare Theme */
+
+.audio-control {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  width: 60px;
+  height: 60px;
+  background: var(--color-text-primary);
+  border: 3px solid var(--color-border-dark);
+  box-shadow: var(--shadow-brutal-sm);
+  cursor: pointer;
+  font-size: var(--text-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.audio-control:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-border-dark);
+}
+
+.audio-control:active {
+  transform: translate(0, 0);
+  box-shadow: var(--shadow-brutal-sm);
+}

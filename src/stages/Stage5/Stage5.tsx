@@ -1,10 +1,13 @@
 // ステージ5: Everything（総合エンタメプラットフォーム）- 規約スクロール地獄
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../../contexts';
+import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { HintToggle } from '../../components/HintToggle';
+import { PageTransition } from '../../components/PageTransition';
+import { AudioControl } from '../../components/AudioControl';
 import './Stage5.css';
 
 const Stage5: React.FC = () => {
@@ -24,11 +27,13 @@ const Stage5: React.FC = () => {
   };
 
   const handleRealUnsubscribe = () => {
+    audioManager.playSuccess();
     completeStage(5);
     navigate(ROUTES.RESULT);
   };
 
   const handleFakeButton = () => {
+    audioManager.playError();
     setFakeButtonClicked(true);
     setProcessing(true);
     // 3秒後にエラーメッセージ
@@ -38,7 +43,8 @@ const Stage5: React.FC = () => {
   };
 
   return (
-    <div className="stage5">
+    <PageTransition>
+      <div className="stage5">
       <div className="terms-container">
         <h1>退会に関する重要事項</h1>
         <p className="subtitle">最後までお読みいただき、同意の上で退会手続きを進めてください</p>
@@ -137,7 +143,9 @@ const Stage5: React.FC = () => {
 
         <HintToggle hintText="💡 ヒント: 本当に最後まで読む必要があるのでしょうか？規約文をよく見てみましょう。" />
       </div>
+      <AudioControl />
     </div>
+    </PageTransition>
   );
 };
 

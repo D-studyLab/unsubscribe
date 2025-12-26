@@ -52,12 +52,15 @@
 - 🟢 入力フォームコンポーネント（各ステージ内で実装）
 - 🟢 モーダルコンポーネント（DummyPageModal実装済み）
 - 🟢 ヒント表示トグルコンポーネント（HintToggle実装済み）
-- 🔴 ローディング表示
+- 🟢 ローディングコンポーネント（Loading実装済み）
+- 🟢 ページ遷移コンポーネント（PageTransition実装済み）
+- 🟢 音声コントロールコンポーネント（AudioControl実装済み）
 - 🔴 トースト通知
 
 ### 2.3 ユーティリティ関数
 - 🟢 ランダム名前生成関数
 - 🟢 時間計測関数
+- 🟢 音声管理関数（Web Audio API）
 - 🔴 ローカルストレージ操作関数
 
 ---
@@ -126,15 +129,15 @@
 ## フェーズ5：演出とポリッシュ
 
 ### 5.1 アニメーション
-- 🔴 ページ遷移アニメーション
+- 🟢 ページ遷移アニメーション（フェードイン効果）
 - 🟢 ボタンホバーエフェクト
 - 🔴 モーダル表示アニメーション
 - 🟢 クリア時の演出（Stage5で実装）
 
-### 5.2 サウンド（優先度低）
-- ⏸️ BGMの追加
-- ⏸️ 効果音の追加
-- ⏸️ 電話の保留音
+### 5.2 サウンド
+- 🟢 BGMの追加
+- 🟢 効果音の追加（クリック、成功、エラー音）
+- 🟢 音声コントロール機能（ミュート切り替え）
 
 ### 5.3 アクセシビリティ
 - 🟡 キーボード操作対応（基本的な操作は可能）
@@ -221,27 +224,29 @@
 - スタート画面（ニックネーム入力、ランダム名前生成）
 - 全5ステージの実装（各種ダークパターンを含む）
 - 結果画面（クリア時間表示、SNS共有機能）
-- Firebase Hosting設定
+- Firebase Hosting設定とデプロイ
 - **デザインテーマの統一（Corporate Nightmare）**
   - デザイントークンファイル作成 (`src/styles/design-tokens.css`)
-  - 全ステージのCSS変更（Stage1-4完了、Stage5は旧デザイン残存）
+  - 全ステージのCSS変更（Stage1-5完了）
   - StartPageとResultPageのCSS変更
   - ブルータリストデザイン（硬質なボーダー、シャドウ、大文字テキスト）
+- **サウンドシステム**
+  - Web Audio APIによる効果音（クリック、成功、エラー）
+  - 外部BGMファイル再生機能
+  - 音声コントロール（ミュート切り替え）
+- **アニメーションシステム**
+  - ページ遷移アニメーション（フェードイン）
+  - ボタンホバーエフェクト
 
 ### 🟡 部分完了
-- アニメーション（ホバーエフェクト、一部演出のみ）
 - アクセシビリティ（基本的なキーボード操作のみ）
-- デザインテーマ統一（Stage5のみ旧グラデーションデザイン残存）
 
 ### 🔴 未実装
 - ESLint/Prettier設定
 - 画像アセット
-- モーダルコンポーネント
 - ローカルストレージ機能
-- ページ遷移アニメーション
 - ARIAラベル
-- 本番デプロイ
-- Stage5のCorporate Nightmareテーマ適用
+- モーダル表示アニメーション
 
 ---
 
@@ -329,6 +334,41 @@
   - `public/index.html` (タイトル、メタ説明更新)
   - `public/manifest.json` (アプリ名、テーマカラー更新)
 
+### 2025-12-27 (6) - サウンドシステムとアニメーションの実装
+- **ページ遷移アニメーション**:
+  - `PageTransition`コンポーネントを作成（フェードイン効果）
+  - 全ページ（StartPage, ResultPage, Stage1-5）に適用
+- **ローディングコンポーネント**:
+  - `Loading`コンポーネントを作成（Corporate Nightmareテーマ）
+  - アニメーション付きスピナーバー
+- **音声システム**:
+  - `AudioControl`コンポーネントを作成（ミュート切り替えボタン）
+  - `src/utils/audio.ts`を実装（Web Audio API + HTMLAudioElement）
+  - 効果音: クリック音、成功音（C5→G5→C6）、エラー音
+  - BGM: 外部音源対応（`public/bgm.mp3`）
+  - BGMファイル: "Mist In The Dark"を配置
+  - 全ページとステージに音声呼び出しを追加
+- **音量調整**:
+  - BGM音量: 0.3
+  - 効果音音量: 0.5（Web Audio API）
+- 対応ファイル:
+  - `src/components/PageTransition.tsx` (新規作成)
+  - `src/components/PageTransition.css` (新規作成)
+  - `src/components/Loading.tsx` (新規作成)
+  - `src/components/Loading.css` (新規作成)
+  - `src/components/AudioControl.tsx` (新規作成)
+  - `src/components/AudioControl.css` (新規作成)
+  - `src/utils/audio.ts` (新規作成)
+  - `public/bgm.mp3` (新規追加)
+  - `src/pages/StartPage.tsx` (アニメーション、音声追加)
+  - `src/pages/ResultPage.tsx` (アニメーション、音声追加)
+  - `src/stages/Stage1/Stage1.tsx` (アニメーション、音声追加)
+  - `src/stages/Stage2/Stage2.tsx` (アニメーション、音声追加)
+  - `src/stages/Stage3/Stage3.tsx` (アニメーション、音声追加)
+  - `src/stages/Stage4/Stage4.tsx` (アニメーション、音声追加)
+  - `src/stages/Stage5/Stage5.tsx` (アニメーション、音声追加)
+- デプロイ: https://un-subscribe.web.app
+
 ---
 
-**最終更新**: 2025-12-25
+**最終更新**: 2025-12-27

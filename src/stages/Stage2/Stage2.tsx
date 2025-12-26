@@ -3,9 +3,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../../contexts';
+import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { DummyPageModal } from '../../components/DummyPageModal';
 import { HintToggle } from '../../components/HintToggle';
+import { PageTransition } from '../../components/PageTransition';
+import { AudioControl } from '../../components/AudioControl';
 import './Stage2.css';
 
 const Stage2: React.FC = () => {
@@ -15,16 +18,19 @@ const Stage2: React.FC = () => {
   const [dummyPage, setDummyPage] = useState<{ title: string; content: string } | null>(null);
 
   const handleAccountClick = () => {
+    audioManager.playClick();
     setShowUnsubscribePage(true);
   };
 
   const handleWrongChoice = () => {
+    audioManager.playError();
     // 「退会しない」を押した場合、何も起きない（ひっかけ）
     alert('退会をキャンセルしました');
     setShowUnsubscribePage(false);
   };
 
   const handleCorrectChoice = () => {
+    audioManager.playSuccess();
     completeStage(2);
     nextStage();
     navigate(ROUTES.STAGE_3);
@@ -32,7 +38,8 @@ const Stage2: React.FC = () => {
 
   if (showUnsubscribePage) {
     return (
-      <div className="stage2 unsubscribe-page">
+      <PageTransition>
+        <div className="stage2 unsubscribe-page">
         <div className="unsubscribe-container">
           <h1 className="warning-title">本当に退会しますか？</h1>
 
@@ -62,12 +69,15 @@ const Stage2: React.FC = () => {
             </small>
           </div>
         </div>
+        <AudioControl />
       </div>
+      </PageTransition>
     );
   }
 
   return (
-    <div className="stage2">
+    <PageTransition>
+      <div className="stage2">
       <header className="stage2-header">
         <h1>Info-Sphere</h1>
         <p className="tagline">世界の最新情報をあなたに</p>
@@ -126,7 +136,9 @@ const Stage2: React.FC = () => {
         title={dummyPage?.title || ''}
         content={dummyPage?.content || ''}
       />
+      <AudioControl />
     </div>
+    </PageTransition>
   );
 };
 

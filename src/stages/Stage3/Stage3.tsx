@@ -3,9 +3,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../../contexts';
+import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { DummyPageModal } from '../../components/DummyPageModal';
 import { HintToggle } from '../../components/HintToggle';
+import { PageTransition } from '../../components/PageTransition';
+import { AudioControl } from '../../components/AudioControl';
 import './Stage3.css';
 
 const Stage3: React.FC = () => {
@@ -17,18 +20,22 @@ const Stage3: React.FC = () => {
   const [showFinalMessage, setShowFinalMessage] = useState(false);
 
   const handleSettingsClick = () => {
+    audioManager.playClick();
     setShowSurvey(true);
   };
 
   const handleSubmitSurvey = () => {
     if (reason.trim().length < 10 || details.trim().length < 50) {
+      audioManager.playError();
       alert('退会理由は10文字以上、詳細は50文字以上入力してください。');
       return;
     }
+    audioManager.playClick();
     setShowFinalMessage(true);
   };
 
   const handleFinalUnsubscribe = () => {
+    audioManager.playSuccess();
     completeStage(3);
     nextStage();
     navigate(ROUTES.STAGE_4);
@@ -36,7 +43,8 @@ const Stage3: React.FC = () => {
 
   if (showFinalMessage) {
     return (
-      <div className="stage3 final-message-page">
+      <PageTransition>
+        <div className="stage3 final-message-page">
         <div className="final-container">
           <h1>最後に...</h1>
           <div className="emotional-appeal">
@@ -62,13 +70,16 @@ const Stage3: React.FC = () => {
             それでも退会する
           </button>
         </div>
+        <AudioControl />
       </div>
+      </PageTransition>
     );
   }
 
   if (showSurvey) {
     return (
-      <div className="stage3 survey-page">
+      <PageTransition>
+        <div className="stage3 survey-page">
         <div className="survey-container">
           <h1>退会前アンケート</h1>
           <p className="survey-required">※すべての項目が必須です</p>
@@ -119,12 +130,15 @@ const Stage3: React.FC = () => {
             </button>
           </div>
         </div>
+        <AudioControl />
       </div>
+      </PageTransition>
     );
   }
 
   return (
-    <div className="stage3">
+    <PageTransition>
+      <div className="stage3">
       <header className="stage3-header">
         <h1>Fan-Circle</h1>
         <p className="tagline">クリエイターを支援しよう</p>
@@ -188,7 +202,9 @@ const Stage3: React.FC = () => {
 
         <HintToggle hintText="💡 ヒント: 設定から退会手続きができます" />
       </main>
+      <AudioControl />
     </div>
+    </PageTransition>
   );
 };
 
