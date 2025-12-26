@@ -82,11 +82,11 @@ const Stage5: React.FC = () => {
               {t.stage5.article6Content}
             </p>
             <ul>
-              <li>法令または公序良俗に違反する行為</li>
-              <li>犯罪行為に関連する行為</li>
-              <li>他の利用者または第三者の権利を侵害する行為</li>
-              <li>本サービスの運営を妨害する行為</li>
-              <li>不正アクセスまたはハッキング行為</li>
+              <li>{t.stage5.prohibitedItem1}</li>
+              <li>{t.stage5.prohibitedItem2}</li>
+              <li>{t.stage5.prohibitedItem3}</li>
+              <li>{t.stage5.prohibitedItem4}</li>
+              <li>{t.stage5.prohibitedItem5}</li>
             </ul>
 
             <h2>{t.stage5.article7Title}</h2>

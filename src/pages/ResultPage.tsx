@@ -17,8 +17,8 @@ const ResultPage: React.FC = () => {
   const [elapsedTime, setElapsedTime] = useState('');
 
   useEffect(() => {
-    if (!gameState.startTime) {
-      // ゲームを開始していない場合はスタートページへ
+    // ゲームを開始していない、またはステージ5をクリアしていない場合はスタートページへ
+    if (!gameState.startTime || !gameState.completedStages.includes(5)) {
       navigate(ROUTES.START);
       return;
     }
@@ -29,7 +29,7 @@ const ResultPage: React.FC = () => {
     // BGMを停止（ゲームクリア）
     audioManager.stopBGM();
     audioManager.playSuccess();
-  }, [gameState.startTime, navigate]);
+  }, [gameState.startTime, gameState.completedStages, navigate]);
 
   const handleShare = () => {
     audioManager.playClick();

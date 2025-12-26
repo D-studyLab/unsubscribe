@@ -209,6 +209,11 @@ export interface Translations {
     article5Content: string;
     article6Title: string;
     article6Content: string;
+    prohibitedItem1: string;
+    prohibitedItem2: string;
+    prohibitedItem3: string;
+    prohibitedItem4: string;
+    prohibitedItem5: string;
     article7Title: string;
     article7Content1: string;
     article7Content2: string;
@@ -442,6 +447,11 @@ export const translations: Record<'ja' | 'en', Translations> = {
       article5Content: '当社は、利用者の個人情報を適切に管理し、プライバシーポリシーに従って取り扱います。個人情報は、サービス提供、マーケティング、データ分析などの目的で使用されます。第三者への提供については、プライバシーポリシーをご確認ください。',
       article6Title: '第6条 禁止事項',
       article6Content: '利用者は、本サービスの利用にあたり、以下の行為を行ってはなりません。',
+      prohibitedItem1: '法令または公序良俗に違反する行為',
+      prohibitedItem2: '犯罪行為に関連する行為',
+      prohibitedItem3: '他の利用者または第三者の権利を侵害する行為',
+      prohibitedItem4: '本サービスの運営を妨害する行為',
+      prohibitedItem5: '不正アクセスまたはハッキング行為',
       article7Title: '第7条 アカウントの解約',
       article7Content1: '利用者は、本サービスから',
       article7Content2: 'することができます。解約手続きは、所定の方法に従って行う必要があります。解約後も、一定期間はデータが保持される場合があります。また、解約前に発生した利用料金については、返金されません。',
@@ -669,6 +679,11 @@ export const translations: Record<'ja' | 'en', Translations> = {
       article5Content: 'The Company properly manages users\' personal information and handles it according to the Privacy Policy. Personal information is used for purposes such as service provision, marketing, and data analysis. Please refer to the Privacy Policy regarding provision to third parties.',
       article6Title: 'Article 6: Prohibited Acts',
       article6Content: 'Users must not engage in the following acts when using this Service.',
+      prohibitedItem1: 'Acts that violate laws or public order and morals',
+      prohibitedItem2: 'Acts related to criminal activities',
+      prohibitedItem3: 'Acts that infringe on the rights of other users or third parties',
+      prohibitedItem4: 'Acts that interfere with the operation of this Service',
+      prohibitedItem5: 'Unauthorized access or hacking',
       article7Title: 'Article 7: Account Cancellation',
       article7Content1: 'Users may',
       article7Content2: 'from this Service. Cancellation procedures must be performed according to the prescribed method. Data may be retained for a certain period even after cancellation. Additionally, usage fees incurred before cancellation will not be refunded.',
