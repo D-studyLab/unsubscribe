@@ -9,6 +9,7 @@ import { DummyPageModal } from '../../components/DummyPageModal';
 import { HintToggle } from '../../components/HintToggle';
 import { PageTransition } from '../../components/PageTransition';
 import { AudioControl } from '../../components/AudioControl';
+import { SettingsButton } from '../../components/SettingsButton';
 import './Stage1.css';
 
 const Stage1: React.FC = () => {
@@ -90,6 +91,7 @@ const Stage1: React.FC = () => {
         title={dummyPage?.title || ''}
         content={dummyPage?.content || ''}
       />
+      <SettingsButton />
       <AudioControl />
     </div>
     </PageTransition>

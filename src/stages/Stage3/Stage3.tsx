@@ -9,6 +9,7 @@ import { DummyPageModal } from '../../components/DummyPageModal';
 import { HintToggle } from '../../components/HintToggle';
 import { PageTransition } from '../../components/PageTransition';
 import { AudioControl } from '../../components/AudioControl';
+import { SettingsButton } from '../../components/SettingsButton';
 import './Stage3.css';
 
 const Stage3: React.FC = () => {
@@ -202,6 +203,7 @@ const Stage3: React.FC = () => {
 
         <HintToggle hintText="💡 ヒント: 設定から退会手続きができます" />
       </main>
+      <SettingsButton />
       <AudioControl />
     </div>
     </PageTransition>

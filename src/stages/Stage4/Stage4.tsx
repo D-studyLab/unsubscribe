@@ -8,6 +8,7 @@ import { ROUTES } from '../../constants';
 import { HintToggle } from '../../components/HintToggle';
 import { PageTransition } from '../../components/PageTransition';
 import { AudioControl } from '../../components/AudioControl';
+import { SettingsButton } from '../../components/SettingsButton';
 import './Stage4.css';
 
 const Stage4: React.FC = () => {
@@ -179,6 +180,7 @@ const Stage4: React.FC = () => {
 
         <HintToggle hintText="💡 ヒント: マイアカウントから退会手続きができます" />
       </main>
+      <SettingsButton />
       <AudioControl />
     </div>
     </PageTransition>

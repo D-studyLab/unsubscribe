@@ -8,6 +8,7 @@ import { audioManager } from '../utils/audio';
 import { ROUTES } from '../constants';
 import { PageTransition } from '../components/PageTransition';
 import { AudioControl } from '../components/AudioControl';
+import { SettingsButton } from '../components/SettingsButton';
 import './StartPage.css';
 
 const StartPage: React.FC = () => {
@@ -76,6 +77,7 @@ const StartPage: React.FC = () => {
             <p className="hint">面倒な方はそのままスタートボタンを押してください</p>
           </div>
         </div>
+        <SettingsButton />
         <AudioControl />
       </div>
     </PageTransition>
