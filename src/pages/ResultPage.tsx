@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGame } from '../contexts';
+import { useGame, useLanguage } from '../contexts';
 import { formatDetailedTime, shareToTwitter } from '../utils';
 import { audioManager } from '../utils/audio';
 import { ROUTES } from '../constants';
@@ -13,6 +13,7 @@ import './ResultPage.css';
 const ResultPage: React.FC = () => {
   const navigate = useNavigate();
   const { gameState, resetGame } = useGame();
+  const { t } = useLanguage();
   const [elapsedTime, setElapsedTime] = useState('');
 
   useEffect(() => {
@@ -45,36 +46,36 @@ const ResultPage: React.FC = () => {
     <PageTransition>
       <div className="result-page">
         <div className="result-content">
-          <h1 className="result-title">おめでとうございます！</h1>
-          <p className="result-subtitle">全てのサービスから退会できました</p>
+          <h1 className="result-title">{t.result.title}</h1>
+          <p className="result-subtitle">{t.result.subtitle}</p>
 
           <div className="result-stats">
             <div className="stat-item">
-              <span className="stat-label">ニックネーム</span>
+              <span className="stat-label">{t.result.nicknameLabel}</span>
               <span className="stat-value">{gameState.nickname}</span>
             </div>
             <div className="stat-item">
-              <span className="stat-label">クリア時間</span>
+              <span className="stat-label">{t.result.clearTimeLabel}</span>
               <span className="stat-value">{elapsedTime}</span>
             </div>
             <div className="stat-item">
-              <span className="stat-label">クリアステージ</span>
+              <span className="stat-label">{t.result.clearStageLabel}</span>
               <span className="stat-value">5 / 5</span>
             </div>
           </div>
 
           <div className="result-message">
-            <p>しかし、あなたは本当に自由になったのでしょうか...？</p>
-            <p>「退会する」を選んだあなたは自由ですか？それとも、選択させられただけですか？</p>
-            <p>自由意志とは、用意された選択肢の中から選ぶことではありません。</p>
+            <p>{t.result.message1}</p>
+            <p>{t.result.message2}</p>
+            <p>{t.result.message3}</p>
           </div>
 
           <div className="result-actions">
             <button onClick={handleShare} className="share-button">
-              結果を共有する
+              {t.result.shareButton}
             </button>
             <button onClick={handlePlayAgain} className="play-again-button">
-              もう一度プレイ
+              {t.result.playAgainButton}
             </button>
           </div>
         </div>

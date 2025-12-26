@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loadSettings, saveSettings } from '../utils/settings';
 import { audioManager } from '../utils/audio';
+import { useLanguage } from '../contexts';
 import './SettingsModal.css';
 
 interface SettingsModalProps {
@@ -9,9 +10,9 @@ interface SettingsModalProps {
 }
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
+  const { language: currentLang, setLanguage: setGlobalLanguage, t } = useLanguage();
   const [bgmVolume, setBgmVolume] = useState(15);
   const [sfxVolume, setSfxVolume] = useState(30);
-  const [language, setLanguage] = useState<'ja' | 'en'>('ja');
 
   // モーダルが開いたときに設定を読み込む
   useEffect(() => {
@@ -19,7 +20,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
       const settings = loadSettings();
       setBgmVolume(settings.bgmVolume);
       setSfxVolume(settings.sfxVolume);
-      setLanguage(settings.language);
     }
   }, [isOpen]);
 
@@ -42,11 +42,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
   };
 
   const handleLanguageToggle = () => {
-    const newLanguage = language === 'ja' ? 'en' : 'ja';
-    setLanguage(newLanguage);
-    const settings = loadSettings();
-    settings.language = newLanguage;
-    saveSettings(settings);
+    const newLanguage = currentLang === 'ja' ? 'en' : 'ja';
+    setGlobalLanguage(newLanguage);
   };
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -62,7 +59,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
     <div className="settings-overlay" onClick={handleOverlayClick}>
       <div className="settings-modal">
         <div className="settings-header">
-          <h2 className="settings-title">SETTINGS</h2>
+          <h2 className="settings-title">{t.settings.title}</h2>
           <button className="settings-close" onClick={onClose}>
             ×
           </button>
@@ -72,7 +69,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
           {/* BGM音量 */}
           <div className="settings-item">
             <label className="settings-label">
-              BGM Volume
+              {t.settings.bgmVolume}
               <span className="settings-value">{bgmVolume}%</span>
             </label>
             <input
@@ -88,7 +85,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
           {/* SE音量 */}
           <div className="settings-item">
             <label className="settings-label">
-              SE Volume
+              {t.settings.sfxVolume}
               <span className="settings-value">{sfxVolume}%</span>
             </label>
             <input
@@ -103,19 +100,16 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
 
           {/* 言語設定 */}
           <div className="settings-item">
-            <label className="settings-label">Language</label>
+            <label className="settings-label">{t.settings.language}</label>
             <button className="language-toggle" onClick={handleLanguageToggle}>
-              {language === 'ja' ? '日本語' : 'English'}
+              {currentLang === 'ja' ? '日本語' : 'English'}
             </button>
-            <p className="settings-note">
-              ※ Currently Japanese only / 現在は日本語のみ対応
-            </p>
           </div>
         </div>
 
         <div className="settings-footer">
           <button className="settings-close-button" onClick={onClose}>
-            CLOSE
+            {t.settings.closeButton}
           </button>
         </div>
       </div>

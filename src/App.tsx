@@ -1,12 +1,14 @@
 import React from 'react';
-import { GameProvider } from './contexts';
+import { GameProvider, LanguageProvider } from './contexts';
 import { AppRouter } from './router';
 
 function App() {
   return (
-    <GameProvider>
-      <AppRouter />
-    </GameProvider>
+    <LanguageProvider>
+      <GameProvider>
+        <AppRouter />
+      </GameProvider>
+    </LanguageProvider>
   );
 }
 

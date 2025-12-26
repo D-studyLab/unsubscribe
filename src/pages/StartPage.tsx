@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGame } from '../contexts';
+import { useGame, useLanguage } from '../contexts';
 import { generateRandomName } from '../utils';
 import { audioManager } from '../utils/audio';
 import { ROUTES } from '../constants';
@@ -13,6 +13,7 @@ import './StartPage.css';
 const StartPage: React.FC = () => {
   const navigate = useNavigate();
   const { setNickname, startGame } = useGame();
+  const { t } = useLanguage();
   const [inputNickname, setInputNickname] = useState('');
 
   useEffect(() => {
@@ -49,17 +50,17 @@ const StartPage: React.FC = () => {
     <PageTransition>
       <div className="start-page">
         <div className="start-content">
-          <h1 className="title">The Unsubscribe</h1>
-          <p className="subtitle">退会することに特化した体験型風刺ゲーム</p>
+          <h1 className="title">{t.start.title}</h1>
+          <p className="subtitle">{t.start.subtitle}</p>
 
           <div className="description">
-            <p>あなたは様々なWebサービスに登録してしまいました。</p>
-            <p>しかし、いざ退会しようとすると...</p>
-            <p>全5ステージをクリアして、すべてのサービスから退会してください。</p>
+            <p>{t.start.description1}</p>
+            <p>{t.start.description2}</p>
+            <p>{t.start.description3}</p>
           </div>
 
           <div className="nickname-section">
-            <label htmlFor="nickname">ニックネーム</label>
+            <label htmlFor="nickname">{t.start.nicknameLabel}</label>
             <div className="nickname-input-group">
               <input
                 id="nickname"
@@ -67,13 +68,13 @@ const StartPage: React.FC = () => {
                 value={inputNickname}
                 onChange={(e) => setInputNickname(e.target.value)}
                 maxLength={20}
-                placeholder="ニックネームを入力"
+                placeholder={t.start.nicknamePlaceholder}
               />
               <button onClick={handleStart} className="start-button">
-                ゲームスタート
+                {t.start.startButton}
               </button>
             </div>
-            <p className="hint">面倒な方はそのままスタートボタンを押してください</p>
+            <p className="hint">{t.start.hint}</p>
           </div>
         </div>
         <SettingsButton />
