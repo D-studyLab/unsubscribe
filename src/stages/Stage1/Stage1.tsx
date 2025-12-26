@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGame } from '../../contexts';
+import { useGame, useLanguage } from '../../contexts';
 import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { DummyPageModal } from '../../components/DummyPageModal';
@@ -14,6 +14,7 @@ import './Stage1.css';
 const Stage1: React.FC = () => {
   const navigate = useNavigate();
   const { completeStage, nextStage } = useGame();
+  const { t } = useLanguage();
   const [dummyPage, setDummyPage] = useState<{ title: string; content: string } | null>(null);
 
   const handleUnsubscribe = () => {
@@ -32,56 +33,56 @@ const Stage1: React.FC = () => {
     <PageTransition>
       <div className="stage1">
       <header className="stage1-header">
-        <h1>BuyMore - オンラインショッピング</h1>
-        <p className="tagline">初回送料無料！今すぐお買い物</p>
+        <h1>{t.stage1.title}</h1>
+        <p className="tagline">{t.stage1.tagline}</p>
       </header>
 
       <main className="stage1-content">
         <div className="products">
-          <h2>おすすめ商品</h2>
+          <h2>{t.stage1.recommendedProducts}</h2>
           <div className="product-grid">
             <div className="product-card">
               <div className="product-image">📱</div>
-              <h3>スマートフォン X1</h3>
-              <p className="product-price">¥89,800</p>
-              <p className="product-desc">最新プロセッサ搭載</p>
+              <h3>{t.stage1.product1Name}</h3>
+              <p className="product-price">{t.stage1.product1Price}</p>
+              <p className="product-desc">{t.stage1.product1Desc}</p>
             </div>
             <div className="product-card">
               <div className="product-image">💻</div>
-              <h3>ノートPC Pro</h3>
-              <p className="product-price">¥149,800</p>
-              <p className="product-desc">軽量で高性能</p>
+              <h3>{t.stage1.product2Name}</h3>
+              <p className="product-price">{t.stage1.product2Price}</p>
+              <p className="product-desc">{t.stage1.product2Desc}</p>
             </div>
             <div className="product-card">
               <div className="product-image">🎧</div>
-              <h3>ワイヤレスイヤホン</h3>
-              <p className="product-price">¥24,800</p>
-              <p className="product-desc">ノイズキャンセリング</p>
+              <h3>{t.stage1.product3Name}</h3>
+              <p className="product-price">{t.stage1.product3Price}</p>
+              <p className="product-desc">{t.stage1.product3Desc}</p>
             </div>
             <div className="product-card">
               <div className="product-image">⌚</div>
-              <h3>スマートウォッチ</h3>
-              <p className="product-price">¥39,800</p>
-              <p className="product-desc">健康管理機能付き</p>
+              <h3>{t.stage1.product4Name}</h3>
+              <p className="product-price">{t.stage1.product4Price}</p>
+              <p className="product-desc">{t.stage1.product4Desc}</p>
             </div>
           </div>
         </div>
 
-        <HintToggle hintText="💡 ヒント: フッターをよく見てみましょう" />
+        <HintToggle hintText={t.stage1.hint} />
       </main>
 
       <footer className="stage1-footer">
         <div className="footer-links">
-          <button onClick={() => showDummyPage('会社概要', 'BuyMoreは2024年に設立されたオンラインショッピングサイトです。お客様に最高のショッピング体験を提供することを目指しています。')}>会社概要</button>
-          <button onClick={() => showDummyPage('利用規約', 'この利用規約は、BuyMoreのサービスをご利用いただく際の条件を定めるものです。サービスをご利用いただくことで、本規約に同意したものとみなされます。')}>利用規約</button>
-          <button onClick={() => showDummyPage('プライバシーポリシー', '当社は、お客様の個人情報を適切に管理し、第三者に提供することはありません。詳細については、プライバシーポリシーをご確認ください。')}>プライバシーポリシー</button>
+          <button onClick={() => showDummyPage(t.stage1.aboutUs, t.stage1.aboutUsContent)}>{t.stage1.aboutUs}</button>
+          <button onClick={() => showDummyPage(t.stage1.terms, t.stage1.termsContent)}>{t.stage1.terms}</button>
+          <button onClick={() => showDummyPage(t.stage1.privacy, t.stage1.privacyContent)}>{t.stage1.privacy}</button>
           <button onClick={handleUnsubscribe} className="tiny-link">
-            退会
+            {t.stage1.unsubscribe}
           </button>
-          <button onClick={() => showDummyPage('お問い合わせ', 'お問い合わせは、メール（support@buymore.example.com）またはお電話（0120-XXX-XXX）にて承っております。')}>お問い合わせ</button>
-          <button onClick={() => showDummyPage('ヘルプ', 'よくある質問や使い方ガイドをご用意しています。お困りの際は、まずヘルプページをご確認ください。')}>ヘルプ</button>
+          <button onClick={() => showDummyPage(t.stage1.contact, t.stage1.contactContent)}>{t.stage1.contact}</button>
+          <button onClick={() => showDummyPage(t.stage1.help, t.stage1.helpContent)}>{t.stage1.help}</button>
         </div>
-        <p className="copyright">© 2024 BuyMore. All rights reserved.</p>
+        <p className="copyright">{t.stage1.copyright}</p>
       </footer>
 
       <DummyPageModal

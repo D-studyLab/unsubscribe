@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGame } from '../../contexts';
+import { useGame, useLanguage } from '../../contexts';
 import { audioManager } from '../../utils/audio';
 import { ROUTES } from '../../constants';
 import { HintToggle } from '../../components/HintToggle';
@@ -13,6 +13,7 @@ import './Stage5.css';
 const Stage5: React.FC = () => {
   const navigate = useNavigate();
   const { completeStage } = useGame();
+  const { t } = useLanguage();
   const [scrolledToBottom, setScrolledToBottom] = useState(false);
   const [fakeButtonClicked, setFakeButtonClicked] = useState(false);
   const [processing, setProcessing] = useState(false);
@@ -46,39 +47,39 @@ const Stage5: React.FC = () => {
     <PageTransition>
       <div className="stage5">
       <div className="terms-container">
-        <h1>退会に関する重要事項</h1>
-        <p className="subtitle">最後までお読みいただき、同意の上で退会手続きを進めてください</p>
+        <h1>{t.stage5.title}</h1>
+        <p className="subtitle">{t.stage5.subtitle}</p>
 
         <div className="terms-scroll" onScroll={handleScroll} ref={termsRef}>
           <div className="terms-content">
-            <h2>第1条 総則</h2>
+            <h2>{t.stage5.article1Title}</h2>
             <p>
-              本規約は、株式会社Everything（以下「当社」といいます）が提供する総合エンターテイメントサービス「Everything」（以下「本サービス」といいます）の利用に関する条件を定めるものです。
+              {t.stage5.article1Content}
             </p>
 
-            <h2>第2条 アカウント登録</h2>
+            <h2>{t.stage5.article2Title}</h2>
             <p>
-              本サービスを利用するには、アカウント登録が必要です。登録時には、正確かつ最新の情報を提供する必要があります。虚偽の情報を登録した場合、当社はアカウントを停止または削除することができます。
+              {t.stage5.article2Content}
             </p>
 
-            <h2>第3条 サービス内容</h2>
+            <h2>{t.stage5.article3Title}</h2>
             <p>
-              本サービスでは、動画配信、音楽ストリーミング、電子書籍、ゲーム、ニュース、クラウドストレージなど、多様なエンターテイメントコンテンツを提供します。各サービスの詳細は、個別の利用規約をご確認ください。
+              {t.stage5.article3Content}
             </p>
 
-            <h2>第4条 利用料金</h2>
+            <h2>{t.stage5.article4Title}</h2>
             <p>
-              本サービスの利用料金は、選択されたプランによって異なります。月額プラン、年額プラン、個別課金など、複数の料金体系があります。料金は事前の通知なく変更される場合があります。
+              {t.stage5.article4Content}
             </p>
 
-            <h2>第5条 個人情報の取り扱い</h2>
+            <h2>{t.stage5.article5Title}</h2>
             <p>
-              当社は、利用者の個人情報を適切に管理し、プライバシーポリシーに従って取り扱います。個人情報は、サービス提供、マーケティング、データ分析などの目的で使用されます。第三者への提供については、プライバシーポリシーをご確認ください。
+              {t.stage5.article5Content}
             </p>
 
-            <h2>第6条 禁止事項</h2>
+            <h2>{t.stage5.article6Title}</h2>
             <p>
-              利用者は、本サービスの利用にあたり、以下の行為を行ってはなりません。
+              {t.stage5.article6Content}
             </p>
             <ul>
               <li>法令または公序良俗に違反する行為</li>
@@ -88,39 +89,39 @@ const Stage5: React.FC = () => {
               <li>不正アクセスまたはハッキング行為</li>
             </ul>
 
-            <h2>第7条 アカウントの解約</h2>
+            <h2>{t.stage5.article7Title}</h2>
             <p>
-              利用者は、本サービスから
-              <span className="hidden-unsubscribe" onClick={handleRealUnsubscribe}>退会</span>
-              することができます。解約手続きは、所定の方法に従って行う必要があります。解約後も、一定期間はデータが保持される場合があります。また、解約前に発生した利用料金については、返金されません。
+              {t.stage5.article7Content1}
+              <span className="hidden-unsubscribe" onClick={handleRealUnsubscribe}>{t.common.unsubscribe}</span>
+              {t.stage5.article7Content2}
             </p>
 
-            <h2>第8条 サービスの変更・停止</h2>
+            <h2>{t.stage5.article8Title}</h2>
             <p>
-              当社は、利用者への事前通知なく、本サービスの内容を変更、追加、または停止することができます。サービスの変更や停止によって利用者に損害が生じた場合でも、当社は一切の責任を負いません。
+              {t.stage5.article8Content}
             </p>
 
-            <h2>第9条 免責事項</h2>
+            <h2>{t.stage5.article9Title}</h2>
             <p>
-              当社は、本サービスの利用によって生じたいかなる損害についても、当社に故意または重大な過失がある場合を除き、一切の責任を負いません。また、本サービスの中断、エラー、ウイルス感染などについても、責任を負いません。
+              {t.stage5.article9Content}
             </p>
 
-            <h2>第10条 準拠法と管轄裁判所</h2>
+            <h2>{t.stage5.article10Title}</h2>
             <p>
-              本規約の解釈および適用については、日本法に準拠します。本サービスに関する紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。
+              {t.stage5.article10Content}
             </p>
 
-            <h2>第11条 規約の変更</h2>
+            <h2>{t.stage5.article11Title}</h2>
             <p>
-              当社は、利用者への事前通知なく、本規約を変更することができます。変更後の規約は、本サービス上で公開された時点で効力を生じます。利用者が変更後も本サービスを継続して利用する場合、変更後の規約に同意したものとみなします。
+              {t.stage5.article11Content}
             </p>
 
-            <h2>第12条 問い合わせ</h2>
+            <h2>{t.stage5.article12Title}</h2>
             <p>
-              本サービスまたは本規約に関するお問い合わせは、サポートセンター（support@everything.example.com）までご連絡ください。ただし、回答までに時間がかかる場合があります。また、すべてのお問い合わせに回答できるとは限りません。
+              {t.stage5.article12Content}
             </p>
 
-            <p className="final-notice">以上、ご確認ありがとうございました。</p>
+            <p className="final-notice">{t.stage5.finalNotice}</p>
           </div>
         </div>
 
@@ -131,17 +132,17 @@ const Stage5: React.FC = () => {
               onClick={handleFakeButton}
               disabled={processing}
             >
-              {processing ? '処理中...' : '同意して退会'}
+              {processing ? t.stage5.processingButton : t.stage5.agreeButton}
             </button>
             {fakeButtonClicked && !processing && (
               <p className="error-message">
-                ❌ エラーが発生しました。時間をおいて再度お試しください。
+                {t.stage5.errorMessage}
               </p>
             )}
           </div>
         )}
 
-        <HintToggle hintText="💡 ヒント: 本当に最後まで読む必要があるのでしょうか？規約文をよく見てみましょう。" />
+        <HintToggle hintText={t.stage5.hint} />
       </div>
       <SettingsButton />
     </div>
